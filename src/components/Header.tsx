@@ -10,7 +10,7 @@ const Header = () => {
           <a href="/" className="flex items-center gap-2 group">
             <Sparkles className="w-6 h-6 text-primary animate-glow-pulse" />
             <span className="font-warrior text-xl font-bold text-gradient-cosmic group-hover:scale-105 transition-transform">
-              FEATHERWIND
+              Featherwind Spirit
             </span>
           </a>
 
