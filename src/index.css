@@ -107,6 +107,34 @@ All colors MUST be HSL.
   .shadow-warrior {
     box-shadow: var(--shadow-warrior);
   }
+
+  /* Crystal Background Effects */
+  .crystal-bg {
+    position: relative;
+  }
+
+  .crystal-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(circle at 20% 30%, hsl(var(--accent) / 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 60%, hsl(var(--healing) / 0.12) 0%, transparent 50%),
+      radial-gradient(circle at 40% 80%, hsl(var(--secondary) / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 70% 20%, hsl(var(--primary) / 0.08) 0%, transparent 50%);
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+
+  .crystal-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      repeating-linear-gradient(45deg, transparent, transparent 100px, hsl(var(--accent) / 0.03) 100px, hsl(var(--accent) / 0.03) 101px),
+      repeating-linear-gradient(-45deg, transparent, transparent 100px, hsl(var(--healing) / 0.03) 100px, hsl(var(--healing) / 0.03) 101px);
+    pointer-events: none;
+  }
 }
 
 @layer base {
