@@ -36,7 +36,7 @@ const Header = () => {
             >
               <a href="https://your-blog-link.com" target="_blank" rel="noopener noreferrer">
                 <BookOpen className="w-4 h-4 mr-2" />
-                <span className="hidden sm:inline">Blog</span>
+                <span className="hidden sm:inline">SharpMarbles</span>
               </a>
             </Button>
 
@@ -48,7 +48,19 @@ const Header = () => {
             >
               <a href="https://your-photography-link.com" target="_blank" rel="noopener noreferrer">
                 <Camera className="w-4 h-4 mr-2" />
-                <span className="hidden sm:inline">Gallery</span>
+                <span className="hidden sm:inline">Photographics</span>
+              </a>
+            </Button>
+
+            <Button
+              variant="ghost"
+              size="sm"
+              className="font-body font-medium text-foreground/90 hover:text-primary hover:bg-primary/10 transition-all"
+              asChild
+            >
+              <a href="https://your-information-link.com" target="_blank" rel="noopener noreferrer">
+                <BookOpen className="w-4 h-4 mr-2" />
+                <span className="hidden sm:inline">Information</span>
               </a>
             </Button>
           </div>
