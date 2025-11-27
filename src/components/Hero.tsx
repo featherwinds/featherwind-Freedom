@@ -19,9 +19,9 @@ const Hero = () => {
         <div className="animate-fade-in-up space-y-8 max-w-4xl mx-auto">
           {/* Brand Name */}
           <div className="space-y-4">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 backdrop-blur-sm">
-              <img src={logo} alt="Featherwind Spirit Logo" className="w-5 h-5 object-contain" />
-              <span className="text-sm font-body font-medium text-primary-glow">Pure Energy Healing</span>
+            <div className="inline-flex items-center gap-4 px-8 py-4 rounded-full bg-primary/10 border-2 border-primary/30 backdrop-blur-sm">
+              <img src={logo} alt="Featherwind Spirit Logo" className="w-10 h-10 object-contain" />
+              <span className="text-2xl font-body font-medium text-primary-glow">Pure Energy Healing</span>
             </div>
             
             <h1 className="font-warrior text-6xl md:text-8xl font-black tracking-tight">
@@ -51,17 +51,23 @@ const Hero = () => {
             <Button 
               size="lg" 
               className="group font-warrior text-base px-8 py-6 bg-primary hover:bg-primary-glow transition-all duration-300 shadow-warrior hover:shadow-primary/50"
+              asChild
             >
-              Explore Collections
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <a href="https://www.etsy.com/shop/FeatherwindSpirit?ref=dashboard-header" target="_blank" rel="noopener noreferrer">
+                Explore Collections
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </a>
             </Button>
             
             <Button 
               size="lg" 
               variant="outline"
               className="font-warrior text-base px-8 py-6 border-2 border-primary/50 hover:border-primary hover:bg-primary/10 transition-all duration-300"
+              asChild
             >
-              Learn Our Process
+              <a href="/info">
+                Learn Our Process
+              </a>
             </Button>
           </div>
 
