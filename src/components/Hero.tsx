@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-cosmic-warrior.jpg";
+import logo from "@/assets/featherwind-logo.png";
 
 const Hero = () => {
   return (
@@ -19,7 +20,7 @@ const Hero = () => {
           {/* Brand Name */}
           <div className="space-y-4">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 backdrop-blur-sm">
-              <Sparkles className="w-4 h-4 text-primary animate-glow-pulse" />
+              <img src={logo} alt="Featherwind Spirit Logo" className="w-5 h-5 object-contain" />
               <span className="text-sm font-body font-medium text-primary-glow">Pure Energy Healing</span>
             </div>
             

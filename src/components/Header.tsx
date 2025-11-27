@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Sparkles, ShoppingBag, BookOpen, Camera } from "lucide-react";
+import { ShoppingBag, BookOpen, Camera } from "lucide-react";
+import logo from "@/assets/featherwind-logo.png";
 
 const Header = () => {
   return (
@@ -8,7 +9,7 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Brand Logo */}
           <a href="/" className="flex items-center gap-2 group">
-            <Sparkles className="w-6 h-6 text-primary animate-glow-pulse" />
+            <img src={logo} alt="Featherwind Spirit Logo" className="w-8 h-8 object-contain" />
             <span className="font-warrior text-xl font-bold text-gradient-cosmic group-hover:scale-105 transition-transform">
               Featherwind Spirit
             </span>
@@ -22,7 +23,7 @@ const Header = () => {
               className="font-body font-medium text-foreground/90 hover:text-primary hover:bg-primary/10 transition-all"
               asChild
             >
-              <a href="https://your-store-link.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.etsy.com/shop/FeatherwindSpirit?ref=dashboard-header" target="_blank" rel="noopener noreferrer">
                 <ShoppingBag className="w-4 h-4 mr-2" />
                 <span className="hidden sm:inline">Store</span>
               </a>
@@ -34,7 +35,7 @@ const Header = () => {
               className="font-body font-medium text-foreground/90 hover:text-accent hover:bg-accent/10 transition-all"
               asChild
             >
-              <a href="https://your-blog-link.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.sharpmarbles.com" target="_blank" rel="noopener noreferrer">
                 <BookOpen className="w-4 h-4 mr-2" />
                 <span className="hidden sm:inline">SharpMarbles</span>
               </a>
@@ -46,7 +47,7 @@ const Header = () => {
               className="font-body font-medium text-foreground/90 hover:text-healing hover:bg-healing/10 transition-all"
               asChild
             >
-              <a href="https://your-photography-link.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.featherwindphoto.com" target="_blank" rel="noopener noreferrer">
                 <Camera className="w-4 h-4 mr-2" />
                 <span className="hidden sm:inline">Photographics</span>
               </a>
@@ -58,7 +59,7 @@ const Header = () => {
               className="font-body font-medium text-foreground/90 hover:text-primary hover:bg-primary/10 transition-all"
               asChild
             >
-              <a href="https://your-information-link.com" target="_blank" rel="noopener noreferrer">
+              <a href="/info">
                 <BookOpen className="w-4 h-4 mr-2" />
                 <span className="hidden sm:inline">Information</span>
               </a>
