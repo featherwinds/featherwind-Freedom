@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import warriorImage from "@/assets/warrior-collection.jpg";
 import sanctuaryImage from "@/assets/sanctuary-collection.jpg";
 import highVibrationImage from "@/assets/high-vibration.jpg";
@@ -50,7 +51,9 @@ const Collections = () => {
 
         {/* Collections Grid */}
         <div className="grid md:grid-cols-3 gap-8">
-          {collections.map((collection, index) => (
+          {collections.map((collection, index) => {
+            const isWarrior = index === 0;
+            return (
             <Card 
               key={index}
               className={`group overflow-hidden bg-card/50 backdrop-blur-sm border-2 ${collection.color} transition-all duration-500 hover:scale-105 hover:shadow-2xl animate-fade-in`}
@@ -83,16 +86,30 @@ const Collections = () => {
                   {collection.description}
                 </p>
 
-                <Button 
-                  variant="ghost" 
-                  className={`group/btn w-full justify-between font-body font-medium ${collection.textColor} hover:bg-primary/10`}
-                >
-                  Explore Collection
-                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                </Button>
+                {isWarrior ? (
+                  <Button 
+                    variant="ghost" 
+                    className={`group/btn w-full justify-between font-body font-medium ${collection.textColor} hover:bg-primary/10`}
+                    asChild
+                  >
+                    <Link to="/warrior-collection">
+                      Explore Collection
+                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </Link>
+                  </Button>
+                ) : (
+                  <Button 
+                    variant="ghost" 
+                    className={`group/btn w-full justify-between font-body font-medium ${collection.textColor} hover:bg-primary/10`}
+                  >
+                    Explore Collection
+                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                  </Button>
+                )}
               </div>
             </Card>
-          ))}
+            );
+          })}
         </div>
 
         {/* CTA */}
