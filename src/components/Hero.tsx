@@ -51,9 +51,12 @@ const Hero = () => {
             <Button 
               size="lg" 
               className="group font-warrior text-base px-8 py-6 bg-primary hover:bg-primary-glow transition-all duration-300 shadow-warrior hover:shadow-primary/50"
+              asChild
             >
-              Explore Collections
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <a href="#collections">
+                Explore Collections
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </a>
             </Button>
             
             <Button 
