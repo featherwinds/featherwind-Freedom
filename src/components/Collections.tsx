@@ -34,7 +34,7 @@ const Collections = () => {
   ];
 
   return (
-    <section className="py-24 px-4 bg-background">
+    <section id="collections" className="py-24 px-4 bg-background">
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <div className="text-center mb-16 animate-fade-in">
