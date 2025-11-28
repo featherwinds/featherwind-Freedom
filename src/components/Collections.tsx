@@ -53,6 +53,7 @@ const Collections = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {collections.map((collection, index) => {
             const isWarrior = index === 0;
+            const isSanctuary = index === 1;
             return (
             <Card 
               key={index}
@@ -93,6 +94,17 @@ const Collections = () => {
                     asChild
                   >
                     <Link to="/warrior-collection">
+                      Explore Collection
+                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </Link>
+                  </Button>
+                ) : isSanctuary ? (
+                  <Button 
+                    variant="ghost" 
+                    className={`group/btn w-full justify-between font-body font-medium ${collection.textColor} hover:bg-primary/10`}
+                    asChild
+                  >
+                    <Link to="/sanctuary-collection">
                       Explore Collection
                       <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                     </Link>
