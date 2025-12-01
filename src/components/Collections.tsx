@@ -35,7 +35,7 @@ const Collections = () => {
           <h2 className="font-warrior text-4xl md:text-6xl font-black mb-6 tracking-tight">
             <span className="text-gradient-cosmic glow-primary">ENERGETICALLY</span>
             <br />
-            <span className="text-foreground">ENGINEERED TOOLS</span>
+            <span className="text-foreground">ENGINEERED PRODUCTS</span>
           </h2>
           <p className="text-lg md:text-xl font-body text-muted-foreground max-w-3xl mx-auto">
             Not just products. These are precision instruments for your spiritual transformation.
