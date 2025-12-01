@@ -77,10 +77,7 @@ const Collections = () => {
                     
                   </Button> : isSanctuary ? <Button variant="ghost" className={`group/btn w-full justify-between font-body font-medium ${collection.textColor} hover:bg-primary/10`} asChild>
                     
-                  </Button> : <Button variant="ghost" className={`group/btn w-full justify-between font-body font-medium ${collection.textColor} hover:bg-primary/10`}>
-                    Explore Collection
-                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                  </Button>}
+                  </Button> : null}
               </div>
             </Card>;
         })}
@@ -88,9 +85,18 @@ const Collections = () => {
 
         {/* CTA */}
         <div className="text-center mt-16">
-          <Button size="lg" className="font-warrior text-base px-10 py-6 bg-primary hover:bg-primary-glow transition-all duration-300 shadow-warrior hover:shadow-primary/50">
-            View All Products
-            <ArrowRight className="ml-2 w-5 h-5" />
+          <Button 
+            size="lg" 
+            className="group font-warrior text-base px-8 py-6 bg-primary hover:bg-primary-glow transition-all duration-300 shadow-warrior hover:shadow-primary/50 flex flex-col items-center gap-0.5"
+            asChild
+          >
+            <a href="#collections">
+              <span className="flex items-center">
+                Store
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </span>
+              <span className="text-xs font-body font-light tracking-wide opacity-80">Collections and Products</span>
+            </a>
           </Button>
         </div>
       </div>
