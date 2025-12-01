@@ -206,6 +206,14 @@ const Journal = () => {
       </section>
 
       <Footer />
+      
+      <Link
+        to="/admin/auth"
+        className="fixed bottom-4 left-4 text-[10px] text-muted-foreground/20 opacity-30 pointer-events-auto z-50"
+        style={{ color: 'rgba(156, 163, 175, 0.2)' }}
+      >
+        admin
+      </Link>
     </div>
   );
 };
