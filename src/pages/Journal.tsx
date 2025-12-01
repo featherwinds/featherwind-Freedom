@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Clock } from "lucide-react";
+import { Clock, Loader2 } from "lucide-react";
 
 type Category = "all" | "warrior" | "amazon" | "sanctuary" | "energy";
 
@@ -15,65 +16,37 @@ const categories = [
   { id: "energy" as Category, label: "PURE ENERGY INTEL", color: "primary" },
 ];
 
-const articles = [
-  {
-    id: 1,
-    title: "The Daily Stand: Why Warriors Need Morning Rituals",
-    category: "warrior",
-    excerpt: "Discipline isn't about restriction—it's about creating the container for your power to thrive. Learn the morning protocols that transform chaos into clarity.",
-    readTime: 8,
-    image: "/placeholder.svg",
-    slug: "daily-stand-morning-rituals",
-  },
-  {
-    id: 2,
-    title: "Trusting Your Gut When Logic Fails",
-    category: "amazon",
-    excerpt: "Your intuition isn't mystical—it's intelligence operating faster than conscious thought. Here's how to recognize and act on it.",
-    readTime: 6,
-    image: "/placeholder.svg",
-    slug: "trusting-gut-intuition",
-  },
-  {
-    id: 3,
-    title: "Creating Sacred Space in a Chaotic World",
-    category: "sanctuary",
-    excerpt: "Your sanctuary isn't a place you visit—it's a boundary you maintain. Practical strategies for protecting your peace.",
-    readTime: 10,
-    image: "/placeholder.svg",
-    slug: "sacred-space-chaos",
-  },
-  {
-    id: 4,
-    title: "Moon Phases and Human Energy Cycles",
-    category: "energy",
-    excerpt: "Ancient wisdom meets modern practice: aligning your work, rest, and ritual with lunar rhythms.",
-    readTime: 7,
-    image: "/placeholder.svg",
-    slug: "moon-phases-energy",
-  },
-  {
-    id: 5,
-    title: "The Warrior's Rest: Why Recovery Isn't Weakness",
-    category: "warrior",
-    excerpt: "Rest is not the opposite of discipline—it's the foundation of sustainable strength.",
-    readTime: 5,
-    image: "/placeholder.svg",
-    slug: "warriors-rest-recovery",
-  },
-  {
-    id: 6,
-    title: "528 Hz: The Frequency of Transformation",
-    category: "energy",
-    excerpt: "How Solfeggio frequencies influence cellular healing and emotional release. The science behind the sound.",
-    readTime: 9,
-    image: "/placeholder.svg",
-    slug: "528hz-transformation-frequency",
-  },
-];
 
 const Journal = () => {
   const [activeCategory, setActiveCategory] = useState<Category>("all");
+  const [articles, setArticles] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    fetchArticles();
+  }, []);
+
+  const fetchArticles = async () => {
+    setIsLoading(true);
+    const { data, error } = await supabase
+      .from("articles")
+      .select("*")
+      .eq("published", true)
+      .order("created_at", { ascending: false });
+
+    if (!error && data) {
+      setArticles(data.map(article => ({
+        id: article.id,
+        title: article.title,
+        category: article.category,
+        excerpt: article.excerpt,
+        readTime: article.read_time,
+        image: article.image_url || "/placeholder.svg",
+        slug: article.slug,
+      })));
+    }
+    setIsLoading(false);
+  };
 
   const filteredArticles = activeCategory === "all" 
     ? articles 
@@ -144,8 +117,18 @@ const Journal = () => {
 
       {/* Content Section */}
       <section className="container mx-auto px-4 py-16 space-y-16">
-        {/* Featured Article */}
-        {activeCategory === "all" && (
+        {isLoading ? (
+          <div className="flex items-center justify-center py-12">
+            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          </div>
+        ) : articles.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-muted-foreground">No articles found.</p>
+          </div>
+        ) : (
+          <>
+            {/* Featured Article */}
+            {activeCategory === "all" && featuredArticle && (
           <div className="animate-fade-in">
             <h2 className="font-warrior text-sm tracking-widest text-primary mb-6">FEATURED</h2>
             <Link to={`/journal/${featuredArticle.slug}`}>
@@ -175,11 +158,11 @@ const Journal = () => {
                 </div>
               </Card>
             </Link>
-          </div>
-        )}
+            </div>
+          )}
 
-        {/* Article Grid */}
-        <div>
+          {/* Article Grid */}
+          <div>
           <h2 className="font-warrior text-sm tracking-widest text-primary mb-6">
             {activeCategory === "all" ? "ALL ARTICLES" : categories.find(c => c.id === activeCategory)?.label}
           </h2>
@@ -216,8 +199,10 @@ const Journal = () => {
                 </Card>
               </Link>
             ))}
+            </div>
           </div>
-        </div>
+        </>
+        )}
       </section>
 
       <Footer />

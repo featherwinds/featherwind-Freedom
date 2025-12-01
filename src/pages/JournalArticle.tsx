@@ -1,68 +1,74 @@
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Clock, Calendar } from "lucide-react";
+import { ArrowLeft, Clock, Calendar, Loader2 } from "lucide-react";
 
-// Mock article data - in production, this would come from a CMS or database
-const articleData = {
-  "daily-stand-morning-rituals": {
-    title: "The Daily Stand: Why Warriors Need Morning Rituals",
-    category: "WARRIOR DISCIPLINE",
-    categoryColor: "secondary",
-    date: "November 28, 2024",
-    readTime: 8,
-    heroImage: "/placeholder.svg",
-    content: `
-      <p>The alarm goes off. What happens in the next sixty minutes will determine whether you own your day or your day owns you.</p>
-      
-      <p>This isn't about hustle culture. It's not about forcing yourself to meditate at 4 AM because some entrepreneur on social media said you should. This is about creating the container that allows your power to show up.</p>
-      
-      <h2>The Biology of Morning Protocol</h2>
-      
-      <p>Your nervous system wakes up before you do. In the first hour of consciousness, your brain is still transitioning from theta to beta waves—a liminal space where patterns get set for the entire day.</p>
-      
-      <p>Warriors understand this. They know that discipline isn't about restriction—it's about creating predictable structure so that everything else can flow.</p>
-      
-      <h2>The Three Non-Negotiables</h2>
-      
-      <h3>1. Ground Before Screen</h3>
-      <p>Your phone can wait. The world's anxiety doesn't need to become yours in the first five minutes of consciousness. Instead:</p>
-      <ul>
-        <li>Feet on the floor. Three deep breaths.</li>
-        <li>Water before coffee. Hydration before stimulation.</li>
-        <li>Movement before stillness. Even if it's just stretching.</li>
-      </ul>
-      
-      <h3>2. Create Before Consume</h3>
-      <p>Before you let the world tell you what to think about, decide for yourself. Journal. Plan. Set intention. Even five minutes of this reclaims your sovereignty.</p>
-      
-      <h3>3. Connect to Something Larger</h3>
-      <p>Whatever your version of prayer, meditation, or spiritual practice looks like—do it. Not because you "should," but because anchoring to something beyond ego is what separates warriors from mercenaries.</p>
-      
-      <h2>What About When Life Gets Messy?</h2>
-      
-      <p>Kids wake up sick. Emergencies happen. Life doesn't care about your perfect morning routine.</p>
-      
-      <p>This is where the real practice lives: not in executing the ideal ritual, but in maintaining the core structure even when conditions are far from ideal.</p>
-      
-      <p>Shortened version beats skipped version. Always.</p>
-      
-      <h2>The Energetic Truth</h2>
-      
-      <p>Morning rituals aren't about productivity hacks or life optimization. They're about energy sovereignty.</p>
-      
-      <p>Every day, you're going to face demands, distractions, other people's agendas. A morning ritual is how you remember who you are before the world tries to tell you who you should be.</p>
-      
-      <p>That's not privilege. That's survival.</p>
-    `,
-  },
-  // Add more articles as needed
+const categoryColors: Record<string, string> = {
+  warrior: "secondary",
+  amazon: "accent",
+  sanctuary: "power",
+  energy: "primary",
+};
+
+const categoryLabels: Record<string, string> = {
+  warrior: "WARRIOR DISCIPLINE",
+  amazon: "INNER AMAZON INSIGHTS",
+  sanctuary: "SANCTUARY PRACTICES",
+  energy: "PURE ENERGY INTEL",
 };
 
 const JournalArticle = () => {
   const { slug } = useParams<{ slug: string }>();
-  const article = slug ? articleData[slug as keyof typeof articleData] : null;
+  const [article, setArticle] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (slug) {
+      fetchArticle(slug);
+    }
+  }, [slug]);
+
+  const fetchArticle = async (articleSlug: string) => {
+    setIsLoading(true);
+    const { data, error } = await supabase
+      .from("articles")
+      .select("*")
+      .eq("slug", articleSlug)
+      .eq("published", true)
+      .maybeSingle();
+
+    if (!error && data) {
+      setArticle({
+        title: data.title,
+        category: categoryLabels[data.category] || data.category.toUpperCase(),
+        categoryColor: categoryColors[data.category] || "primary",
+        date: new Date(data.created_at).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }),
+        readTime: data.read_time,
+        heroImage: data.image_url || "/placeholder.svg",
+        content: data.content,
+      });
+    }
+    setIsLoading(false);
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <div className="container mx-auto px-4 py-32 flex items-center justify-center">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   if (!article) {
     return (
