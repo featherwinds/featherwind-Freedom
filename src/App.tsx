@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Info from "./pages/Info";
 import WarriorCollection from "./pages/WarriorCollection";
@@ -33,13 +33,6 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
-        <Link
-          to="/admin/auth"
-          className="fixed bottom-4 left-4 text-[10px] text-muted-foreground/20 opacity-30 pointer-events-auto z-50"
-          style={{ color: 'rgba(156, 163, 175, 0.2)' }}
-        >
-          admin
-        </Link>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
