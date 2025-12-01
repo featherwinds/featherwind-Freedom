@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -101,7 +101,16 @@ const AdminDashboard = () => {
     <div className="min-h-screen bg-background">
       <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <h1 className="font-warrior text-2xl text-foreground">Admin Dashboard</h1>
+          <div className="flex items-center gap-4">
+            <Link 
+              to="/journal" 
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              ← Featherwind Journal
+            </Link>
+            <span className="text-muted-foreground/50">|</span>
+            <h1 className="font-warrior text-2xl text-foreground">Admin Dashboard</h1>
+          </div>
           <div className="flex items-center gap-4">
             <span className="text-sm text-muted-foreground">{session?.user?.email}</span>
             <Button onClick={handleSignOut} variant="ghost" size="sm">
