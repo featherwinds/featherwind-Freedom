@@ -1,8 +1,8 @@
 import { Sparkles } from "lucide-react";
 const Footer = () => {
   const links = {
-    shop: ["All Products", "Warrior Collection", "Sanctuary Collection", "High-Vibration Tools"],
-    about: ["Our Philosophy", "Energy Process", "Warrior Wisdom", "Contact"],
+    shop: ["Store"],
+    about: ["Journal"],
     support: ["FAQ", "Shipping", "Returns", "Care Guide"]
   };
   return <footer className="bg-card/50 backdrop-blur-sm border-t border-border py-16 px-4">
@@ -29,13 +29,11 @@ const Footer = () => {
               SHOP
             </h4>
             <ul className="space-y-2">
-              {links.shop.map((link, index) => (
-                <li key={index}>
-                  <a href="#" className="font-body text-sm text-muted-foreground hover:text-primary transition-colors">
-                    {link}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <a href="#collections" className="font-body text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Store
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -45,11 +43,11 @@ const Footer = () => {
               ABOUT
             </h4>
             <ul className="space-y-2">
-              {links.about.map((link, index) => <li key={index}>
-                  <a href="#" className="font-body text-sm text-muted-foreground hover:text-primary transition-colors">
-                    {link}
-                  </a>
-                </li>)}
+              <li>
+                <a href="/journal" className="font-body text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Journal
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -71,7 +69,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="font-body text-sm text-muted-foreground">
-            © 2024 Featherwind Freedom. All rights reserved.
+            © 2026 Featherwind Freedom Federation Inc. All rights reserved.
           </p>
           <div className="flex gap-6">
             <a href="#" className="font-body text-sm text-muted-foreground hover:text-primary transition-colors">

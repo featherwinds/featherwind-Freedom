@@ -65,17 +65,6 @@ const Header = () => {
               </a>
             </Button>
 
-            <Button
-              variant="ghost"
-              size="sm"
-              className="font-body font-medium text-foreground/90 hover:text-primary hover:bg-primary/10 transition-all"
-              asChild
-            >
-              <a href="/info">
-                <BookOpen className="w-4 h-4 mr-2" />
-                <span className="hidden sm:inline">Information</span>
-              </a>
-            </Button>
           </div>
         </div>
       </nav>
