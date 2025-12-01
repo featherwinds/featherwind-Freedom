@@ -1,14 +1,11 @@
 import { Sparkles } from "lucide-react";
-
 const Footer = () => {
   const links = {
     shop: ["All Products", "Warrior Collection", "Sanctuary Collection", "High-Vibration Tools"],
     about: ["Our Philosophy", "Energy Process", "Warrior Wisdom", "Contact"],
-    support: ["FAQ", "Shipping", "Returns", "Care Guide"],
+    support: ["FAQ", "Shipping", "Returns", "Care Guide"]
   };
-
-  return (
-    <footer className="bg-card/50 backdrop-blur-sm border-t border-border py-16 px-4">
+  return <footer className="bg-card/50 backdrop-blur-sm border-t border-border py-16 px-4">
       <div className="container mx-auto max-w-6xl">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
@@ -32,16 +29,7 @@ const Footer = () => {
               SHOP
             </h4>
             <ul className="space-y-2">
-              {links.shop.map((link, index) => (
-                <li key={index}>
-                  <a
-                    href="#"
-                    className="font-body text-sm text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    {link}
-                  </a>
-                </li>
-              ))}
+              {links.shop.map((link, index) => {})}
             </ul>
           </div>
 
@@ -51,16 +39,11 @@ const Footer = () => {
               ABOUT
             </h4>
             <ul className="space-y-2">
-              {links.about.map((link, index) => (
-                <li key={index}>
-                  <a
-                    href="#"
-                    className="font-body text-sm text-muted-foreground hover:text-primary transition-colors"
-                  >
+              {links.about.map((link, index) => <li key={index}>
+                  <a href="#" className="font-body text-sm text-muted-foreground hover:text-primary transition-colors">
                     {link}
                   </a>
-                </li>
-              ))}
+                </li>)}
             </ul>
           </div>
 
@@ -70,16 +53,11 @@ const Footer = () => {
               SUPPORT
             </h4>
             <ul className="space-y-2">
-              {links.support.map((link, index) => (
-                <li key={index}>
-                  <a
-                    href="#"
-                    className="font-body text-sm text-muted-foreground hover:text-primary transition-colors"
-                  >
+              {links.support.map((link, index) => <li key={index}>
+                  <a href="#" className="font-body text-sm text-muted-foreground hover:text-primary transition-colors">
                     {link}
                   </a>
-                </li>
-              ))}
+                </li>)}
             </ul>
           </div>
         </div>
@@ -99,8 +77,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
