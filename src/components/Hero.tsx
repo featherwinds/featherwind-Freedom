@@ -50,21 +50,28 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6">
             <Button 
               size="lg" 
-              className="group font-warrior text-base px-8 py-6 bg-primary hover:bg-primary-glow transition-all duration-300 shadow-warrior hover:shadow-primary/50"
+              className="group font-warrior text-base px-8 py-6 bg-primary hover:bg-primary-glow transition-all duration-300 shadow-warrior hover:shadow-primary/50 flex flex-col items-center gap-0.5"
               asChild
             >
               <a href="#collections">
-                Explore Collections
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <span className="flex items-center">
+                  Store
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </span>
+                <span className="text-xs font-body font-light tracking-wide opacity-80">Collections and Products</span>
               </a>
             </Button>
             
             <Button 
               size="lg" 
               variant="outline"
-              className="font-warrior text-base px-8 py-6 border-2 border-primary/50 hover:border-primary hover:bg-primary/10 transition-all duration-300"
+              className="font-warrior text-base px-8 py-6 border-2 border-primary/50 hover:border-primary hover:bg-primary/10 transition-all duration-300 flex flex-col items-center gap-0.5"
+              asChild
             >
-              Learn Our Process
+              <a href="/journal">
+                <span>Journal</span>
+                <span className="text-xs font-body font-light tracking-wide opacity-80">Intel and Inspiration</span>
+              </a>
             </Button>
           </div>
 
