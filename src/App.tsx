@@ -7,6 +7,8 @@ import Index from "./pages/Index";
 import Info from "./pages/Info";
 import WarriorCollection from "./pages/WarriorCollection";
 import SanctuaryCollection from "./pages/SanctuaryCollection";
+import Journal from "./pages/Journal";
+import JournalArticle from "./pages/JournalArticle";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +24,8 @@ const App = () => (
           <Route path="/info" element={<Info />} />
           <Route path="/warrior-collection" element={<WarriorCollection />} />
           <Route path="/sanctuary-collection" element={<SanctuaryCollection />} />
+          <Route path="/journal" element={<Journal />} />
+          <Route path="/journal/:slug" element={<JournalArticle />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

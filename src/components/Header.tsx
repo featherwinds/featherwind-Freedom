@@ -23,6 +23,18 @@ const Header = () => {
               className="font-body font-medium text-foreground/90 hover:text-primary hover:bg-primary/10 transition-all"
               asChild
             >
+              <a href="/journal">
+                <BookOpen className="w-4 h-4 mr-2" />
+                <span className="hidden sm:inline">Journal</span>
+              </a>
+            </Button>
+
+            <Button
+              variant="ghost"
+              size="sm"
+              className="font-body font-medium text-foreground/90 hover:text-primary hover:bg-primary/10 transition-all"
+              asChild
+            >
               <a href="https://www.etsy.com/shop/FeatherwindSpirit?ref=dashboard-header" target="_blank" rel="noopener noreferrer">
                 <ShoppingBag className="w-4 h-4 mr-2" />
                 <span className="hidden sm:inline">Store</span>

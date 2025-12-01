@@ -29,7 +29,13 @@ const Footer = () => {
               SHOP
             </h4>
             <ul className="space-y-2">
-              {links.shop.map((link, index) => {})}
+              {links.shop.map((link, index) => (
+                <li key={index}>
+                  <a href="#" className="font-body text-sm text-muted-foreground hover:text-primary transition-colors">
+                    {link}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
