@@ -30,7 +30,7 @@ const Footer = () => {
             </h4>
             <ul className="space-y-2">
               <li>
-                <a href="#collections" className="font-body text-sm text-muted-foreground hover:text-primary transition-colors">
+                <a href="https://www.etsy.com/shop/FeatherwindSpirit?ref=dashboard-header" target="_blank" rel="noopener noreferrer" className="font-body text-sm text-muted-foreground hover:text-primary transition-colors">
                   Store
                 </a>
               </li>
