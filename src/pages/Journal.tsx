@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Clock, Loader2 } from "lucide-react";
+import journalHero from "@/assets/journal-hero.jpg";
 
 type Category = "all" | "warrior" | "amazon" | "sanctuary" | "energy";
 
@@ -63,7 +64,7 @@ const Journal = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `url(/placeholder.svg)`,
+            backgroundImage: `url(${journalHero})`,
             filter: "brightness(0.3)",
           }}
         />
