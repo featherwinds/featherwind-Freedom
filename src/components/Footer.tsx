@@ -1,5 +1,4 @@
 import { Sparkles } from "lucide-react";
-import FFFLogo from "@/components/FFFLogo";
 
 const Footer = () => {
   const links = {
@@ -17,7 +16,6 @@ const Footer = () => {
               <span className="font-warrior text-xl font-bold text-gradient-cosmic">
                 FEATHERWIND
               </span>
-              <FFFLogo size="sm" />
             </div>
             <p className="font-body text-sm text-muted-foreground leading-relaxed">
               Reclaim Your Power.
