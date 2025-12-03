@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, BookOpen, Camera } from "lucide-react";
-import logo from "@/assets/featherwind-logo.png";
+import LogoPopup from "@/components/LogoPopup";
 
 const Header = () => {
   return (
@@ -8,12 +8,12 @@ const Header = () => {
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Brand Logo */}
-          <a href="/" className="flex items-center gap-2 group">
-            <img src={logo} alt="Featherwind Spirit Logo" className="w-8 h-8 object-contain" />
-            <span className="font-warrior text-xl font-bold text-gradient-cosmic group-hover:scale-105 transition-transform">
+          <div className="flex items-center gap-2 group">
+            <LogoPopup size="md" />
+            <a href="/" className="font-warrior text-xl font-bold text-gradient-cosmic group-hover:scale-105 transition-transform">
               Featherwind Spirit
-            </span>
-          </a>
+            </a>
+          </div>
 
           {/* Navigation Links */}
           <div className="flex items-center gap-3">
