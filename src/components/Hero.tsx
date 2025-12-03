@@ -53,9 +53,9 @@ const Hero = () => {
               className="group font-warrior text-base px-8 py-6 bg-primary hover:bg-primary-glow transition-all duration-300 shadow-warrior hover:shadow-primary/50 flex flex-col items-center gap-0.5"
               asChild
             >
-              <a href="https://www.etsy.com/shop/FeatherwindSpirit?ref=dashboard-header" target="_blank" rel="noopener noreferrer">
+              <a href="#collections">
                 <span className="flex items-center">
-                  Store
+                  View Products
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
                 <span className="text-xs font-body font-light tracking-wide opacity-80">Collections and Products</span>
