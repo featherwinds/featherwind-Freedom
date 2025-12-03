@@ -6,9 +6,10 @@ import warriorImage from "@/assets/warrior-collection.jpg";
 import sanctuaryImage from "@/assets/sanctuary-collection.jpg";
 import highVibrationImage from "@/assets/high-vibration.jpg";
 import essentialOilImage from "@/assets/essential-oil-collection.png";
+import warriorsMantleImage from "@/assets/warriors-mantle-collection.png";
 
 const Collections = () => {
-  const collections = [{
+  const topCollections = [{
     title: "The Warrior Collection",
     description: "Protection & grounding tools infused with Bloodstone and Obsidian. For those who face their battles head-on.",
     image: warriorImage,
@@ -29,14 +30,24 @@ const Collections = () => {
     color: "border-accent/50 hover:border-accent",
     textColor: "text-accent",
     crystals: "Moldavite • Clear Quartz"
-  }, {
+  }];
+
+  const bottomCollections = [{
     title: "Essential Oil Collection",
     description: "Deep cleansing & purging blends for spiritual repair. Handcrafted oils to restore balance and elevate your energy.",
     image: essentialOilImage,
     color: "border-amber-500/50 hover:border-amber-500",
     textColor: "text-amber-500",
     crystals: "Palo Santo • Amethyst • Citrine"
+  }, {
+    title: "Warriors Mantle Collection",
+    description: "T-shirts and gear featuring inspirational sayings that embody the warrior spirit. Wear your power, speak your truth.",
+    image: warriorsMantleImage,
+    color: "border-purple-500/50 hover:border-purple-500",
+    textColor: "text-purple-500",
+    crystals: "Apparel • Gear • Statements"
   }];
+
   return <section id="collections" className="py-24 px-4 bg-background">
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
@@ -51,45 +62,58 @@ const Collections = () => {
           </p>
         </div>
 
-        {/* Collections Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {collections.map((collection, index) => {
-          const isWarrior = index === 0;
-          const isSanctuary = index === 1;
-          return <Card key={index} className={`group overflow-hidden bg-card/50 backdrop-blur-sm border-2 ${collection.color} transition-all duration-500 hover:scale-105 hover:shadow-2xl animate-fade-in`} style={{
-            animationDelay: `${index * 0.2}s`
-          }}>
-              {/* Image */}
+        {/* Top Row - 3 Collections */}
+        <div className="grid md:grid-cols-3 gap-8 mb-8">
+          {topCollections.map((collection, index) => (
+            <Card key={index} className={`group overflow-hidden bg-card/50 backdrop-blur-sm border-2 ${collection.color} transition-all duration-500 hover:scale-105 hover:shadow-2xl animate-fade-in`} style={{
+              animationDelay: `${index * 0.2}s`
+            }}>
               <div className="relative h-80 overflow-hidden">
                 <img src={collection.image} alt={collection.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent opacity-80"></div>
-                
-                {/* Crystals Badge */}
                 <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-background/80 backdrop-blur-sm border border-border">
                   <span className="text-xs font-body font-medium text-muted-foreground">
                     {collection.crystals}
                   </span>
                 </div>
               </div>
-
-              {/* Content */}
               <div className="p-6 space-y-4">
                 <h3 className={`font-warrior text-2xl font-bold ${collection.textColor}`}>
                   {collection.title}
                 </h3>
-                
                 <p className="font-body text-muted-foreground leading-relaxed">
                   {collection.description}
                 </p>
-
-                {isWarrior ? <Button variant="ghost" className={`group/btn w-full justify-between font-body font-medium ${collection.textColor} hover:bg-primary/10`} asChild>
-                    
-                  </Button> : isSanctuary ? <Button variant="ghost" className={`group/btn w-full justify-between font-body font-medium ${collection.textColor} hover:bg-primary/10`} asChild>
-                    
-                  </Button> : null}
               </div>
-            </Card>;
-        })}
+            </Card>
+          ))}
+        </div>
+
+        {/* Bottom Row - 2 Collections */}
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {bottomCollections.map((collection, index) => (
+            <Card key={index} className={`group overflow-hidden bg-card/50 backdrop-blur-sm border-2 ${collection.color} transition-all duration-500 hover:scale-105 hover:shadow-2xl animate-fade-in`} style={{
+              animationDelay: `${(index + 3) * 0.2}s`
+            }}>
+              <div className="relative h-80 overflow-hidden">
+                <img src={collection.image} alt={collection.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent opacity-80"></div>
+                <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-background/80 backdrop-blur-sm border border-border">
+                  <span className="text-xs font-body font-medium text-muted-foreground">
+                    {collection.crystals}
+                  </span>
+                </div>
+              </div>
+              <div className="p-6 space-y-4">
+                <h3 className={`font-warrior text-2xl font-bold ${collection.textColor}`}>
+                  {collection.title}
+                </h3>
+                <p className="font-body text-muted-foreground leading-relaxed">
+                  {collection.description}
+                </p>
+              </div>
+            </Card>
+          ))}
         </div>
 
         {/* CTA */}
