@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-cosmic-warrior.jpg";
 import logo from "@/assets/featherwind-logo.png";
+import FFFLogo from "@/components/FFFLogo";
 
 const Hero = () => {
   return (
@@ -12,6 +13,11 @@ const Hero = () => {
         style={{ backgroundImage: `url(${heroImage})` }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background"></div>
+      </div>
+
+      {/* Subtle FFF Logo - Top Right */}
+      <div className="absolute top-24 right-6 z-20">
+        <FFFLogo size="md" />
       </div>
 
       {/* Content */}
