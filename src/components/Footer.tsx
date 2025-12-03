@@ -1,4 +1,5 @@
 import { Sparkles } from "lucide-react";
+import LogoPopup from "@/components/LogoPopup";
 
 const Footer = () => {
   const links = {
@@ -16,6 +17,7 @@ const Footer = () => {
               <span className="font-warrior text-xl font-bold text-gradient-cosmic">
                 FEATHERWIND
               </span>
+              <LogoPopup size="sm" />
             </div>
             <p className="font-body text-sm text-muted-foreground leading-relaxed">
               Reclaim Your Power.
