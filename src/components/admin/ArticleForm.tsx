@@ -8,6 +8,16 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
+import { z } from "zod";
+
+const articleSchema = z.object({
+  title: z.string().trim().min(1, "Title is required").max(200, "Title must be less than 200 characters"),
+  category: z.enum(["warrior", "amazon", "sanctuary", "energy"], { required_error: "Category is required" }),
+  excerpt: z.string().trim().min(1, "Excerpt is required").max(500, "Excerpt must be less than 500 characters"),
+  content: z.string().trim().min(1, "Content is required").max(50000, "Content must be less than 50000 characters"),
+  readTime: z.coerce.number().int().min(1, "Read time must be at least 1 minute").max(120, "Read time must be less than 120 minutes"),
+  imageUrl: z.string().url("Invalid URL format").max(500, "URL too long").optional().or(z.literal("")),
+});
 
 const categories = [
   { value: "warrior", label: "WARRIOR DISCIPLINE" },
@@ -22,6 +32,15 @@ interface ArticleFormProps {
   onCancel: () => void;
 }
 
+type FieldErrors = {
+  title?: string;
+  category?: string;
+  excerpt?: string;
+  content?: string;
+  readTime?: string;
+  imageUrl?: string;
+};
+
 const ArticleForm = ({ article, onSaved, onCancel }: ArticleFormProps) => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
@@ -31,6 +50,7 @@ const ArticleForm = ({ article, onSaved, onCancel }: ArticleFormProps) => {
   const [imageUrl, setImageUrl] = useState("");
   const [published, setPublished] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState<FieldErrors>({});
   const { toast } = useToast();
 
   useEffect(() => {
@@ -54,6 +74,28 @@ const ArticleForm = ({ article, onSaved, onCancel }: ArticleFormProps) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
+
+    // Validate with zod
+    const result = articleSchema.safeParse({
+      title,
+      category,
+      excerpt,
+      content,
+      readTime,
+      imageUrl: imageUrl || undefined,
+    });
+
+    if (!result.success) {
+      const fieldErrors: FieldErrors = {};
+      result.error.errors.forEach((err) => {
+        const field = err.path[0] as keyof FieldErrors;
+        if (field) fieldErrors[field] = err.message;
+      });
+      setErrors(fieldErrors);
+      return;
+    }
+
     setIsLoading(true);
 
     try {
@@ -110,16 +152,27 @@ const ArticleForm = ({ article, onSaved, onCancel }: ArticleFormProps) => {
             <Input
               id="title"
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              required
+              onChange={(e) => {
+                setTitle(e.target.value);
+                if (errors.title) setErrors((prev) => ({ ...prev, title: undefined }));
+              }}
               disabled={isLoading}
+              className={errors.title ? "border-destructive" : ""}
             />
+            {errors.title && <p className="text-sm text-destructive">{errors.title}</p>}
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="category">Category</Label>
-            <Select value={category} onValueChange={setCategory} required disabled={isLoading}>
-              <SelectTrigger>
+            <Select 
+              value={category} 
+              onValueChange={(val) => {
+                setCategory(val);
+                if (errors.category) setErrors((prev) => ({ ...prev, category: undefined }));
+              }} 
+              disabled={isLoading}
+            >
+              <SelectTrigger className={errors.category ? "border-destructive" : ""}>
                 <SelectValue placeholder="Select a category" />
               </SelectTrigger>
               <SelectContent>
@@ -130,6 +183,7 @@ const ArticleForm = ({ article, onSaved, onCancel }: ArticleFormProps) => {
                 ))}
               </SelectContent>
             </Select>
+            {errors.category && <p className="text-sm text-destructive">{errors.category}</p>}
           </div>
 
           <div className="space-y-2">
@@ -137,11 +191,15 @@ const ArticleForm = ({ article, onSaved, onCancel }: ArticleFormProps) => {
             <Textarea
               id="excerpt"
               value={excerpt}
-              onChange={(e) => setExcerpt(e.target.value)}
-              required
+              onChange={(e) => {
+                setExcerpt(e.target.value);
+                if (errors.excerpt) setErrors((prev) => ({ ...prev, excerpt: undefined }));
+              }}
               disabled={isLoading}
               rows={3}
+              className={errors.excerpt ? "border-destructive" : ""}
             />
+            {errors.excerpt && <p className="text-sm text-destructive">{errors.excerpt}</p>}
           </div>
 
           <div className="space-y-2">
@@ -150,11 +208,15 @@ const ArticleForm = ({ article, onSaved, onCancel }: ArticleFormProps) => {
               id="readTime"
               type="number"
               value={readTime}
-              onChange={(e) => setReadTime(e.target.value)}
-              required
+              onChange={(e) => {
+                setReadTime(e.target.value);
+                if (errors.readTime) setErrors((prev) => ({ ...prev, readTime: undefined }));
+              }}
               min="1"
               disabled={isLoading}
+              className={errors.readTime ? "border-destructive" : ""}
             />
+            {errors.readTime && <p className="text-sm text-destructive">{errors.readTime}</p>}
           </div>
 
           <div className="space-y-2">
@@ -163,10 +225,15 @@ const ArticleForm = ({ article, onSaved, onCancel }: ArticleFormProps) => {
               id="imageUrl"
               type="url"
               value={imageUrl}
-              onChange={(e) => setImageUrl(e.target.value)}
+              onChange={(e) => {
+                setImageUrl(e.target.value);
+                if (errors.imageUrl) setErrors((prev) => ({ ...prev, imageUrl: undefined }));
+              }}
               disabled={isLoading}
               placeholder="/placeholder.svg"
+              className={errors.imageUrl ? "border-destructive" : ""}
             />
+            {errors.imageUrl && <p className="text-sm text-destructive">{errors.imageUrl}</p>}
           </div>
 
           <div className="space-y-2">
@@ -174,12 +241,15 @@ const ArticleForm = ({ article, onSaved, onCancel }: ArticleFormProps) => {
             <Textarea
               id="content"
               value={content}
-              onChange={(e) => setContent(e.target.value)}
-              required
+              onChange={(e) => {
+                setContent(e.target.value);
+                if (errors.content) setErrors((prev) => ({ ...prev, content: undefined }));
+              }}
               disabled={isLoading}
               rows={15}
-              className="font-mono text-sm"
+              className={`font-mono text-sm ${errors.content ? "border-destructive" : ""}`}
             />
+            {errors.content && <p className="text-sm text-destructive">{errors.content}</p>}
           </div>
 
           <div className="flex items-center gap-4">
