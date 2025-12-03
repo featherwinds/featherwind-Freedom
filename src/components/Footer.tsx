@@ -1,4 +1,6 @@
 import { Sparkles } from "lucide-react";
+import FFFLogo from "@/components/FFFLogo";
+
 const Footer = () => {
   const links = {
     shop: ["Store"],
@@ -10,11 +12,12 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <Sparkles className="w-6 h-6 text-primary animate-glow-pulse" />
               <span className="font-warrior text-xl font-bold text-gradient-cosmic">
                 FEATHERWIND
               </span>
+              <FFFLogo size="sm" />
             </div>
             <p className="font-body text-sm text-muted-foreground leading-relaxed">
               Reclaim Your Power.
