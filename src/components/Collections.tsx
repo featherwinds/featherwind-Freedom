@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import warriorImage from "@/assets/warrior-collection.jpg";
 import sanctuaryImage from "@/assets/sanctuary-collection.jpg";
 import highVibrationImage from "@/assets/high-vibration.jpg";
+import essentialOilImage from "@/assets/essential-oil-collection.png";
+
 const Collections = () => {
   const collections = [{
     title: "The Warrior Collection",
@@ -27,6 +29,13 @@ const Collections = () => {
     color: "border-accent/50 hover:border-accent",
     textColor: "text-accent",
     crystals: "Moldavite • Clear Quartz"
+  }, {
+    title: "Essential Oil Collection",
+    description: "Deep cleansing & purging blends for spiritual repair. Handcrafted oils to restore balance and elevate your energy.",
+    image: essentialOilImage,
+    color: "border-amber-500/50 hover:border-amber-500",
+    textColor: "text-amber-500",
+    crystals: "Palo Santo • Amethyst • Citrine"
   }];
   return <section id="collections" className="py-24 px-4 bg-background">
       <div className="container mx-auto max-w-7xl">
@@ -43,7 +52,7 @@ const Collections = () => {
         </div>
 
         {/* Collections Grid */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {collections.map((collection, index) => {
           const isWarrior = index === 0;
           const isSanctuary = index === 1;
